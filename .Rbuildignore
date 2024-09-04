@@ -5,3 +5,6 @@
 ^project\.Rcheck$
 ^project.*\.tar\.gz$
 ^project.*\.tgz$
+^S1OCN\.Rcheck$
+^S1OCN.*\.tar\.gz$
+^S1OCN.*\.tgz$
