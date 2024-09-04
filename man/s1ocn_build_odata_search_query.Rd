@@ -21,7 +21,7 @@ s1ocn_build_odata_search_query(
 
 \item{datetime_end}{The end of the date-time range for the search. If not provided, the current date and time in UTC is used.}
 
-\item{attributes_search}{A list of attribute name-value pairs to filter the results (excluding \code{productType}, which is handled separately). Each attribute name must be valid according to \code{s1ocn_the$get_attributes_list()}.}
+\item{attributes_search}{A list of attribute name-value pairs to filter the results (excluding \code{productType}, which is hardcoded as "OCN"). Each attribute name must be valid according to \code{s1ocn_the$get_attributes_list()}.}
 }
 \value{
 A character string representing the OData query formatted with the specified filters for querying Sentinel-1 products.

@@ -21,7 +21,7 @@ s1ocn_list_files(
 
 \item{datetime_end}{An optional date-time string specifying the end of the date range for the search. Defaults to the current UTC date and time if not provided.}
 
-\item{attributes_search}{A list of key-value pairs representing attributes and their corresponding values for filtering the search. Attribute names must be valid according to \code{s1ocn_the$get_attributes_list()}. The \code{productType} attribute is handled separately and should not be included in this list.}
+\item{attributes_search}{A list of key-value pairs representing attributes and their corresponding values for filtering the search. Attribute names must be valid according to \code{s1ocn_the$get_attributes_list()}. The \code{productType} attribute is hardcoded as "OCN" and should not be included in this list.}
 }
 \value{
 A data frame of Sentinel-1 files matching the search criteria. If no files are found, the function returns \code{rlang::zap()}.

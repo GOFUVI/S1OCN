@@ -296,7 +296,7 @@ s1ocn_parse_search_polygon <- function(search_polygon) {
 #' @param search_polygon An optional search polygon in `sf`, matrix, data frame, or WKT string format. The polygon defines the geographical area to search. If not provided, the query does not include a spatial filter.
 #' @param datetime_start The start of the date-time range for the search. Accepts strings in various date-time formats (e.g., "YYYY-MM-DD"). If not provided, defaults to "1900-01-01T00:00:00.000Z".
 #' @param datetime_end The end of the date-time range for the search. If not provided, the current date and time in UTC is used.
-#' @param attributes_search A list of attribute name-value pairs to filter the results (excluding `productType`, which is handled separately). Each attribute name must be valid according to `s1ocn_the$get_attributes_list()`.
+#' @param attributes_search A list of attribute name-value pairs to filter the results (excluding `productType`, which is hardcoded as "OCN"). Each attribute name must be valid according to `s1ocn_the$get_attributes_list()`.
 #'
 #' @return A character string representing the OData query formatted with the specified filters for querying Sentinel-1 products.
 #'
@@ -404,7 +404,7 @@ s1ocn_build_odata_search_query <- function(max_results = 20, search_polygon = rl
 #' @param search_polygon An optional search polygon in `sf`, matrix, data frame, or WKT string format. The polygon defines the geographical area to search. If not provided, no spatial filter is applied.
 #' @param datetime_start An optional date-time string specifying the start of the date range for the search. Accepts various date-time formats (e.g., "YYYY-MM-DD"). If not provided, defaults to "1900-01-01T00:00:00.000Z".
 #' @param datetime_end An optional date-time string specifying the end of the date range for the search. Defaults to the current UTC date and time if not provided.
-#' @param attributes_search A list of key-value pairs representing attributes and their corresponding values for filtering the search. Attribute names must be valid according to `s1ocn_the$get_attributes_list()`. The `productType` attribute is handled separately and should not be included in this list.
+#' @param attributes_search A list of key-value pairs representing attributes and their corresponding values for filtering the search. Attribute names must be valid according to `s1ocn_the$get_attributes_list()`. The `productType` attribute is hardcoded as "OCN" and should not be included in this list.
 #'
 #' @return A data frame of Sentinel-1 files matching the search criteria. If no files are found, the function returns `rlang::zap()`.
 #'
