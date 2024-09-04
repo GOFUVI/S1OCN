@@ -40,7 +40,8 @@ s1ocn_the$cache <- list(
 #' @importFrom curl curl
 #' @importFrom jsonlite fromJSON
 #' @importFrom rlang is_zap
-#' @importFrom magrittr %>%
+#' @title s1ocn_the$get_attributes_list
+#' @name get_attributes_list
 s1ocn_the$get_attributes_list <- function() {
 
   # Retrieve the cached attributes list from the object `s1ocn_the`

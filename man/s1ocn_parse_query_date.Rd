@@ -56,11 +56,13 @@ s1ocn_parse_query_date("2024-09-03")
 # Returns: "2024-09-03T00:00:00.000Z"
 
 # Providing an invalid date string with a default value
-s1ocn_parse_query_date("invalid-date", default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
+s1ocn_parse_query_date("invalid-date",
+default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
 # Returns: "2024-09-03T00:00:00.000Z"
 
 # Handling NA input by returning the default value
-s1ocn_parse_query_date(NA, default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
+s1ocn_parse_query_date(NA,
+default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
 # Returns: "2024-09-03T00:00:00.000Z"
 }
 

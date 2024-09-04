@@ -43,7 +43,9 @@ The default search polygon is a rectangle that covers the entire globe, with coo
 \examples{
 \dontrun{
 # Example 1: Valid sf polygon input
-polygon <- sf::st_polygon(list(matrix(c(-10, -10, 10, -10, 10, 10, -10, 10, -10, -10), ncol = 2, byrow = TRUE)))
+polygon <- sf::st_polygon(list(
+matrix(c(-10, -10, 10, -10, 10, 10, -10, 10, -10, -10), ncol = 2, byrow = TRUE)
+))
 s1ocn_parse_search_polygon(polygon)
 # Returns: "POLYGON\%20((-10\%20-10,\%2010\%20-10,\%2010\%2010,\%20-10\%2010,\%20-10\%20-10))"
 

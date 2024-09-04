@@ -5,12 +5,13 @@ Authors@R:
     person("Juan Luis", "Herrera Cortijo", , "first.last@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "https://orcid.org/0000-0002-4206-2459"))
 UUID: 
-Description: Sentinel-1 OCN Products Browsing, Downloading and Extraction
+Description: Package for Sentinel-1 OCN Products Browsing, Downloading and Extraction.
 License: AGPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
 Suggests: 
+    mockthat (>= 0.2.8),
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
