@@ -61,7 +61,7 @@ filenames <- files$Name
 
 
     # Ruta del archivo de salida
-    output_file <- file.path(dest,filename)
+    output_file <- paste0(file.path(dest,filename),".zip")
 
     # Crea un nuevo handle de curl
     h <- curl::new_handle()
