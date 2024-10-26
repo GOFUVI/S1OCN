@@ -48,3 +48,43 @@ out <- files$downloaded_file_path %>% magrittr::set_names(files$Name) %>% furrr:
 return(out)
 
 }
+
+
+#' @export
+s1ocn_new_S1OCN_wind_data_table <- function(wind_data){
+
+  out <- data.frame()
+
+  vars_to_table <-c("owiLon","owiLat","owiWindSpeed","owiWindDirection","owiMask","owiInversionQuality","owiHeading","owiWindQuality","owiRadVel")
+
+ out <-  wind_data$vars[vars_to_table] %>% purrr::map2(names(.), \(mat, var) data.frame(as.vector(mat)) %>%  magrittr::set_colnames(var)) %>% dplyr::bind_cols() %>%
+   dplyr::mutate(
+     firstMeasurementTime = wind_data$global_attributes$firstMeasurementTime  %>% lubridate::ymd_hms(),
+     lastMeasurementTime = wind_data$global_attributes$lastMeasurementTime  %>% lubridate::ymd_hms(),
+     .before = 1)
+
+
+attributes(out) %<>% append( list(vars = wind_data$vars[!names(wind_data$vars) %in% vars_to_table], dims = wind_data$dims, global_attributes = wind_data$global_attributes))
+
+
+class(out) <- c("S1OCN_wind_data_table", class(out))
+
+  return(out)
+
+}
+
+
+
+#' @export
+s1ocn_wind_data_list_to_tables <- function(wind_data_list, workers = 1){
+
+  future::plan("multisession", workers = workers)
+
+  out <- wind_data_list %>% furrr::future_map(\(wind_data){
+
+    S1OCN::s1ocn_new_S1OCN_wind_data_table(wind_data)
+  })
+
+  return(out)
+
+}
