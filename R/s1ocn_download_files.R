@@ -86,7 +86,7 @@ filenames <- files$Name
 
 
 
-  files$downloaded_file_path <- file.path(dest,filenames)
+  files$downloaded_file_path <- file.path(dest,paste0(filenames, ".zip"))
 
   return(files)
 
