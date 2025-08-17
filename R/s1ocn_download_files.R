@@ -1,3 +1,43 @@
+#' Download Sentinel-1 OCN products
+#'
+#' Authenticate against the Copernicus Data Space Ecosystem (CDSE) and
+#' download Sentinel-1 product files provided in a table of product
+#' metadata. Each product is retrieved via the OData API and stored as a
+#' ZIP archive in the destination directory.
+#'
+#' @param files A data frame containing at least the columns `Id` and
+#'   `Name` that identify the products to download. Typically obtained
+#'   from [s1ocn_list_files()].
+#' @param dest A directory path where the downloaded ZIP archives will be
+#'   saved.
+#' @param username CDSE user name.
+#' @param passwd Password corresponding to `username`.
+#' @param workers Number of parallel workers to use when downloading
+#'   files. Defaults to `1` (sequential download).
+#'
+#' @details
+#' The function requests an OAuth access token using the supplied CDSE
+#' credentials. Each product is then downloaded using its product `Id`
+#' from the CDSE catalogue. Files are saved to `dest` using the product
+#' name with a `.zip` extension. The input `files` data frame is returned
+#' with an additional column `downloaded_file_path` pointing to the
+#' stored files.
+#'
+#' @return A data frame equal to the input `files` with an extra column
+#'   `downloaded_file_path` indicating the path to each downloaded file.
+#'
+#' @examples
+#' \dontrun{
+#' files <- s1ocn_list_files(max_results = 2)
+#' downloads <- s1ocn_download_files(
+#'   files = files,
+#'   dest = tempdir(),
+#'   username = "my_user",
+#'   passwd = "my_password",
+#'   workers = 2
+#' )
+#' }
+#'
 #' @export
 s1ocn_download_files <- function(files, dest, username, passwd, workers = 1) {
 
