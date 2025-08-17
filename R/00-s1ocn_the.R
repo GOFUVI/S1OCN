@@ -28,20 +28,11 @@ s1ocn_the$cache <- list(
 #'
 #' The attributes list includes the names of acceptable attributes for querying the Sentinel-1 dataset, along with their respective types.
 #'
-#' @examples
-#' \dontrun{
-#' # Retrieve the list of attributes for Sentinel-1
-#' attributes_list <- s1ocn_the$get_attributes_list()
-#'
-#' # View the list of attribute names and types
-#' print(attributes_list)
-#' }
-#'
 #' @importFrom curl curl
 #' @importFrom jsonlite fromJSON
 #' @importFrom rlang is_zap
-#' @title s1ocn_the$get_attributes_list
 #' @name get_attributes_list
+#' @keywords internal
 s1ocn_the$get_attributes_list <- function() {
 
   # Retrieve the cached attributes list from the object `s1ocn_the`
