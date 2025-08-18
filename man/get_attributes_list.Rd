@@ -3,15 +3,15 @@
 \name{get_attributes_list}
 \alias{get_attributes_list}
 \title{Retrieve and Cache the List of Acceptable Attribute Names for Sentinel-1}
-\description{
-This function retrieves a list of acceptable attribute names and their types for the Copernicus Sentinel-1 Mission.
-The data is retrieved from the Copernicus Data Space Catalogue via an OData API. To improve performance, the results
-are cached after the first retrieval. Subsequent calls will return the cached list unless the cache is reset.
-}
 \value{
 A list of acceptable attribute names and their types for the Sentinel-1 mission, retrieved from the
 Copernicus Data Space Catalogue. If the data has already been retrieved during the session, the function returns
 the cached version to avoid unnecessary API calls.
+}
+\description{
+This function retrieves a list of acceptable attribute names and their types for the Copernicus Sentinel-1 Mission.
+The data is retrieved from the Copernicus Data Space Catalogue via an OData API. To improve performance, the results
+are cached after the first retrieval. Subsequent calls will return the cached list unless the cache is reset.
 }
 \details{
 The function operates as follows:

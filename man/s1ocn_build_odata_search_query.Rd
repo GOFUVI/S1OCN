@@ -42,23 +42,18 @@ The function constructs the query as follows:
 }
 }
 \examples{
-\dontrun{
 # Build a basic query with default parameters
-query <- s1ocn_build_odata_search_query()
-print(query)
+s1ocn_build_odata_search_query()
 
 # Build a query with additional attributes and a date range
-query <- s1ocn_build_odata_search_query(
+s1ocn_build_odata_search_query(
   attributes_search = list(swathIdentifier = "IW", orbitDirection = "DESCENDING"),
   datetime_start = "2023-01-01",
   datetime_end = "2023-12-31"
 )
-print(query)
 
 # Build a query with a geographical search polygon
 polygon <- "POLYGON((-10 -10, 10 -10, 10 10, -10 10, -10 -10))"
-query <- s1ocn_build_odata_search_query(search_polygon = polygon)
-print(query)
-}
+s1ocn_build_odata_search_query(search_polygon = polygon)
 
 }

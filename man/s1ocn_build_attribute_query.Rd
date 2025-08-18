@@ -42,14 +42,10 @@ The function works as follows:
 }
 }
 \examples{
-\dontrun{
 # Build a query for the 'swathIdentifier' attribute with the value 'IW'
-query <- s1ocn_build_attribute_query("swathIdentifier", "IW")
-print(query)
+s1ocn_build_attribute_query("swathIdentifier", "IW")
 
 # Build a query for the 'relativeOrbitNumber' attribute with the value 125 and operator 'gt'
-query <- s1ocn_build_attribute_query("relativeOrbitNumber", 125, "gt")
-print(query)
-}
+s1ocn_build_attribute_query("relativeOrbitNumber", 125, "gt")
 
 }

@@ -40,22 +40,16 @@ The function operates as follows:
 }
 }
 \examples{
-\dontrun{
+\donttest{
 # Retrieve Sentinel-1 files with specified attributes
-s1ocn_list_files(attributes_search =
-list(swathIdentifier = "IW", orbitDirection = "DESCENDING", relativeOrbitNumber = 125))
-
-# Retrieve files with attributes and a date range filter
-s1ocn_list_files(attributes_search =
-list(swathIdentifier = "IW", orbitDirection = "DESCENDING", relativeOrbitNumber = 125),
-datetime_start = "2021-01-01")
-
-# Retrieve files with attributes, date range, and geographical search polygon
-search_polygon <- matrix(c(-11, 41, -11, 44, 6, 44, 6, 41, -11, 41), ncol = 2, byrow = TRUE)
-s1ocn_list_files(attributes_search =
-list(swathIdentifier = "IW", orbitDirection = "DESCENDING", relativeOrbitNumber = 125),
-datetime_start = "2021-01-01",
-search_polygon = search_polygon)
+s1ocn_list_files(
+  attributes_search = list(
+    swathIdentifier = "IW",
+    orbitDirection = "DESCENDING",
+    relativeOrbitNumber = 125
+  ),
+  max_results = 1
+)
 }
 
 }
