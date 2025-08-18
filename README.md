@@ -407,9 +407,9 @@ Sentinel-1 L2 OCN Data on CREODIAS
 <https://creodias.eu/eodata/sentinel-1/sentinel-1-l2-ocn/>
 
 [\[5\]](https://documentation.dataspace.copernicus.eu/APIs/S3.html)
-Setting S3 access
+Setting AWS S3 access
 
-<https://github.com/GOFUVI/S1OCN/blob/154b12f04a26bcc3f945c202231b5f3ee9d660c5/README.md>
+<https://documentation.dataspace.copernicus.eu/APIs/S3.htmld>
 
 [\[7\]](https://sentiwiki.copernicus.eu/web/s1-processing#S1Processing-L2AlgorithmsS1-Processing-L2-Algorithms#:~:text=The%20Sentinel,NRCS)
 [\[8\]](https://sentiwiki.copernicus.eu/web/s1-processing#S1Processing-L2AlgorithmsS1-Processing-L2-Algorithms#:~:text=)
