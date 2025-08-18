@@ -2,20 +2,18 @@
 % Please edit documentation in R/00-s1ocn_the.R
 \name{get_attributes_list}
 \alias{get_attributes_list}
-\title{s1ocn_the$get_attributes_list}
+\title{Retrieve and Cache the List of Acceptable Attribute Names for Sentinel-1}
 \value{
 A list of acceptable attribute names and their types for the Sentinel-1 mission, retrieved from the
 Copernicus Data Space Catalogue. If the data has already been retrieved during the session, the function returns
 the cached version to avoid unnecessary API calls.
 }
 \description{
-Retrieve and Cache the List of Acceptable Attribute Names for Sentinel-1
-}
-\details{
 This function retrieves a list of acceptable attribute names and their types for the Copernicus Sentinel-1 Mission.
 The data is retrieved from the Copernicus Data Space Catalogue via an OData API. To improve performance, the results
 are cached after the first retrieval. Subsequent calls will return the cached list unless the cache is reset.
-
+}
+\details{
 The function operates as follows:
 \enumerate{
 \item \strong{Cache Check:} The function first checks if the list of attributes is stored in the cache (\code{s1ocn_the$cache$attibutes_list}).
@@ -30,13 +28,4 @@ subsequent calls.
 
 The attributes list includes the names of acceptable attributes for querying the Sentinel-1 dataset, along with their respective types.
 }
-\examples{
-\dontrun{
-# Retrieve the list of attributes for Sentinel-1
-attributes_list <- s1ocn_the$get_attributes_list()
-
-# View the list of attribute names and types
-print(attributes_list)
-}
-
-}
+\keyword{internal}

@@ -37,33 +37,3 @@ If all parsing attempts fail, the function returns the \code{default} value.
 The output is formatted to the ISO 8601 standard, which is widely used for representing date-time values
 in a way that is unambiguous and timezone-independent.
 }
-\examples{
-\dontrun{
-# Parsing a full date-time string
-s1ocn_parse_query_date("2024-09-03 14:23:45")
-# Returns: "2024-09-03T14:23:45.000Z"
-
-# Parsing a date-time string without seconds
-s1ocn_parse_query_date("2024-09-03 14:23")
-# Returns: "2024-09-03T14:23:00.000Z"
-
-# Parsing a date-time string without minutes and seconds
-s1ocn_parse_query_date("2024-09-03 14")
-# Returns: "2024-09-03T14:00:00.000Z"
-
-# Parsing a date string
-s1ocn_parse_query_date("2024-09-03")
-# Returns: "2024-09-03T00:00:00.000Z"
-
-# Providing an invalid date string with a default value
-s1ocn_parse_query_date("invalid-date",
-default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
-# Returns: "2024-09-03T00:00:00.000Z"
-
-# Handling NA input by returning the default value
-s1ocn_parse_query_date(NA,
-default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
-# Returns: "2024-09-03T00:00:00.000Z"
-}
-
-}

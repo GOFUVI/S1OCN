@@ -40,28 +40,3 @@ WKT string are replaced with \verb{\%20} to ensure proper URL encoding.
 The default search polygon is a rectangle that covers the entire globe, with coordinates (-90, -180), (-90, 180),
 (90, 180), and (90, -180).
 }
-\examples{
-\dontrun{
-# Example 1: Valid sf polygon input
-polygon <- sf::st_polygon(list(
-matrix(c(-10, -10, 10, -10, 10, 10, -10, 10, -10, -10), ncol = 2, byrow = TRUE)
-))
-s1ocn_parse_search_polygon(polygon)
-# Returns: "POLYGON\%20((-10\%20-10,\%2010\%20-10,\%2010\%2010,\%20-10\%2010,\%20-10\%20-10))"
-
-# Example 2: Valid data frame input
-df <- data.frame(x = c(-10, 10, 10, -10, -10), y = c(-10, -10, 10, 10, -10))
-s1ocn_parse_search_polygon(df)
-# Returns: "POLYGON\%20((-10\%20-10,\%2010\%20-10,\%2010\%2010,\%20-10\%2010,\%20-10\%20-10))"
-
-# Example 3: Valid WKT string input
-wkt <- "POLYGON((-10 -10, 10 -10, 10 10, -10 10, -10 -10))"
-s1ocn_parse_search_polygon(wkt)
-# Returns: "POLYGON\%20((-10\%20-10,\%2010\%20-10,\%2010\%2010,\%20-10\%2010,\%20-10\%20-10))"
-
-# Example 4: Invalid input defaults to worldwide polygon
-s1ocn_parse_search_polygon("invalid input")
-# Returns: "POLYGON\%20((-90\%20-180,\%20-90\%20180,\%2090\%20180,\%2090\%20-180,\%20-90\%20-180))"
-}
-
-}
