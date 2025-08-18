@@ -388,6 +388,8 @@ We hope S1OCN simplifies your workflow in accessing ocean wind data from
 Sentinel-1. For any issues or support using the package, please refer to
 the GitHub repository's issue tracker. Happy analyzing!
 
+### References
+
 [\[1\]](https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html#:~:text=The%20Sentinel,oil%20slicks%20or%20marine%20traffic)
 [\[9\]](https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html#:~:text=The%20end%20of%20mission%20of,been%20declared%20in%20July%202022)
 [\[10\]](https://documentation.dataspace.copernicus.eu/Data/SentinelMissions/Sentinel1.html#:~:text=The%20Sentinel,night%20under%20all%20weather%20conditions)
@@ -404,8 +406,8 @@ Sentinel-1 L2 OCN Data on CREODIAS
 
 <https://creodias.eu/eodata/sentinel-1/sentinel-1-l2-ocn/>
 
-[\[5\]](https://github.com/GOFUVI/S1OCN/blob/154b12f04a26bcc3f945c202231b5f3ee9d660c5/README.md#L20-L26)
-README.md
+[\[5\]](https://documentation.dataspace.copernicus.eu/APIs/S3.html)
+Setting S3 access
 
 <https://github.com/GOFUVI/S1OCN/blob/154b12f04a26bcc3f945c202231b5f3ee9d660c5/README.md>
 
