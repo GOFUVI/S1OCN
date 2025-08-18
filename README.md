@@ -95,13 +95,13 @@ Requirements
     and obtain S3 API keys for Copernicus Data Space. This involves
     generating **access keys** and configuring the AWS CLI with the
     Copernicus S3
-    endpoint[\[5\]](https://github.com/GOFUVI/S1OCN/blob/154b12f04a26bcc3f945c202231b5f3ee9d660c5/README.md#L20-L26).
+    endpoint[\[5\]](https://documentation.dataspace.copernicus.eu/APIs/S3.html).
     However, this is not required to use S1OCN, as the package's
     `s1ocn_download_files()` function can download products directly via
     HTTPS using your Copernicus account. (For reference, see the
     Copernicus Data Space **S3 Access** documentation on how to generate
     secrets and configure
-    access[\[5\]](https://github.com/GOFUVI/S1OCN/blob/154b12f04a26bcc3f945c202231b5f3ee9d660c5/README.md#L20-L26).)
+    access[\[5\]](https://documentation.dataspace.copernicus.eu/APIs/S3.html).)
 
 **Note on System Dependencies:** If installing from source, make sure
 external libraries needed by **sf** (GDAL, GEOS, PROJ) and **RNetCDF**
