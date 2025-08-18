@@ -21,17 +21,13 @@
 #' 2. **Attribute Validation:** The `attribute_name` is validated against the list of acceptable attributes retrieved from `s1ocn_the$get_attributes_list()`. If the attribute is invalid, an error is thrown.
 #' 3. **Value Type Handling:** The function determines the attribute's value type from the retrieved attributes list. If the value is a string, it is URL-encoded.
 #' 4. **Query Construction:** The function constructs an OData query string in the format required for querying Sentinel-1 attributes.
-#'
+#' 
 #' @examples
-#' \dontrun{
 #' # Build a query for the 'swathIdentifier' attribute with the value 'IW'
-#' query <- s1ocn_build_attribute_query("swathIdentifier", "IW")
-#' print(query)
+#' s1ocn_build_attribute_query("swathIdentifier", "IW")
 #'
 #' # Build a query for the 'relativeOrbitNumber' attribute with the value 125 and operator 'gt'
-#' query <- s1ocn_build_attribute_query("relativeOrbitNumber", 125, "gt")
-#' print(query)
-#' }
+#' s1ocn_build_attribute_query("relativeOrbitNumber", 125, "gt")
 #'
 #' @importFrom rlang arg_match abort is_character
 #' @importFrom glue glue
@@ -102,35 +98,6 @@ s1ocn_build_attribute_query <- function(attribute_name, attribute_value, value_o
 #'
 #' @return A character string representing the parsed date-time in ISO 8601 format (`YYYY-MM-DDTHH:MM:SS.000Z`).
 #' If the parsing fails or the input is not provided, the function returns the specified `default` value.
-#'
-#' @examples
-#' \dontrun{
-#' # Parsing a full date-time string
-#' s1ocn_parse_query_date("2024-09-03 14:23:45")
-#' # Returns: "2024-09-03T14:23:45.000Z"
-#'
-#' # Parsing a date-time string without seconds
-#' s1ocn_parse_query_date("2024-09-03 14:23")
-#' # Returns: "2024-09-03T14:23:00.000Z"
-#'
-#' # Parsing a date-time string without minutes and seconds
-#' s1ocn_parse_query_date("2024-09-03 14")
-#' # Returns: "2024-09-03T14:00:00.000Z"
-#'
-#' # Parsing a date string
-#' s1ocn_parse_query_date("2024-09-03")
-#' # Returns: "2024-09-03T00:00:00.000Z"
-#'
-#' # Providing an invalid date string with a default value
-#' s1ocn_parse_query_date("invalid-date",
-#' default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
-#' # Returns: "2024-09-03T00:00:00.000Z"
-#'
-#' # Handling NA input by returning the default value
-#' s1ocn_parse_query_date(NA,
-#' default = lubridate::ymd_hms("2024-09-03 00:00:00", tz = "UTC"))
-#' # Returns: "2024-09-03T00:00:00.000Z"
-#' }
 #'
 #' @importFrom lubridate ymd_hms ymd_hm ymd_h is.timepoint now
 #' @importFrom rlang is_null is_zap try_fetch
@@ -204,30 +171,6 @@ s1ocn_parse_query_date <- function(x, default = lubridate::now(tzone = "UTC")) {
 #'
 #' @return A character string representing the search polygon in WKT format, with spaces replaced by `%20` for
 #' URL encoding. This string can be used in queries that require a properly formatted polygon parameter.
-#'
-#' @examples
-#' \dontrun{
-#' # Example 1: Valid sf polygon input
-#' polygon <- sf::st_polygon(list(
-#' matrix(c(-10, -10, 10, -10, 10, 10, -10, 10, -10, -10), ncol = 2, byrow = TRUE)
-#' ))
-#' s1ocn_parse_search_polygon(polygon)
-#' # Returns: "POLYGON%20((-10%20-10,%2010%20-10,%2010%2010,%20-10%2010,%20-10%20-10))"
-#'
-#' # Example 2: Valid data frame input
-#' df <- data.frame(x = c(-10, 10, 10, -10, -10), y = c(-10, -10, 10, 10, -10))
-#' s1ocn_parse_search_polygon(df)
-#' # Returns: "POLYGON%20((-10%20-10,%2010%20-10,%2010%2010,%20-10%2010,%20-10%20-10))"
-#'
-#' # Example 3: Valid WKT string input
-#' wkt <- "POLYGON((-10 -10, 10 -10, 10 10, -10 10, -10 -10))"
-#' s1ocn_parse_search_polygon(wkt)
-#' # Returns: "POLYGON%20((-10%20-10,%2010%20-10,%2010%2010,%20-10%2010,%20-10%20-10))"
-#'
-#' # Example 4: Invalid input defaults to worldwide polygon
-#' s1ocn_parse_search_polygon("invalid input")
-#' # Returns: "POLYGON%20((-90%20-180,%20-90%20180,%2090%20180,%2090%20-180,%20-90%20-180))"
-#' }
 #'
 #' @importFrom sf st_polygon st_as_sfc st_is_valid st_as_text st_is
 #' @importFrom rlang inherits_any try_fetch warn
@@ -309,24 +252,19 @@ s1ocn_parse_search_polygon <- function(search_polygon) {
 #' 5. **Search Polygon:** If a search polygon is provided, it is URL-encoded and appended as a spatial filter to the query.
 #'
 #' @examples
-#' \dontrun{
 #' # Build a basic query with default parameters
-#' query <- s1ocn_build_odata_search_query()
-#' print(query)
+#' s1ocn_build_odata_search_query()
 #'
 #' # Build a query with additional attributes and a date range
-#' query <- s1ocn_build_odata_search_query(
+#' s1ocn_build_odata_search_query(
 #'   attributes_search = list(swathIdentifier = "IW", orbitDirection = "DESCENDING"),
 #'   datetime_start = "2023-01-01",
 #'   datetime_end = "2023-12-31"
 #' )
-#' print(query)
 #'
 #' # Build a query with a geographical search polygon
 #' polygon <- "POLYGON((-10 -10, 10 -10, 10 10, -10 10, -10 -10))"
-#' query <- s1ocn_build_odata_search_query(search_polygon = polygon)
-#' print(query)
-#' }
+#' s1ocn_build_odata_search_query(search_polygon = polygon)
 #'
 #' @importFrom glue glue
 #' @importFrom purrr reduce2 map_lgl
@@ -416,22 +354,16 @@ s1ocn_build_odata_search_query <- function(max_results = 20, search_polygon = rl
 #' 4. **Empty Result Handling:** If no files are found, the function returns `rlang::zap()` to signify an empty result.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Retrieve Sentinel-1 files with specified attributes
-#' s1ocn_list_files(attributes_search =
-#' list(swathIdentifier = "IW", orbitDirection = "DESCENDING", relativeOrbitNumber = 125))
-#'
-#' # Retrieve files with attributes and a date range filter
-#' s1ocn_list_files(attributes_search =
-#' list(swathIdentifier = "IW", orbitDirection = "DESCENDING", relativeOrbitNumber = 125),
-#' datetime_start = "2021-01-01")
-#'
-#' # Retrieve files with attributes, date range, and geographical search polygon
-#' search_polygon <- matrix(c(-11, 41, -11, 44, 6, 44, 6, 41, -11, 41), ncol = 2, byrow = TRUE)
-#' s1ocn_list_files(attributes_search =
-#' list(swathIdentifier = "IW", orbitDirection = "DESCENDING", relativeOrbitNumber = 125),
-#' datetime_start = "2021-01-01",
-#' search_polygon = search_polygon)
+#' s1ocn_list_files(
+#'   attributes_search = list(
+#'     swathIdentifier = "IW",
+#'     orbitDirection = "DESCENDING",
+#'     relativeOrbitNumber = 125
+#'   ),
+#'   max_results = 1
+#' )
 #' }
 #'
 #' @importFrom curl curl
