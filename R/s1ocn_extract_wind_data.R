@@ -1,3 +1,23 @@
+#' Extract wind data from a Sentinel-1 OCN product
+#'
+#' Reads a Sentinel-1 Ocean (OCN) zipped product and returns wind-related
+#' variables, dimensions and global attributes from its NetCDF file.
+#'
+#' @param filepath Path to a Sentinel-1 OCN ZIP archive.
+#'
+#' @details
+#' The archive is unpacked in a temporary directory. The function locates the
+#' NetCDF file within the `measurement` folder, extracts all variables whose
+#' names begin with `owi`, and gathers their corresponding dimensions and global
+#' attributes.
+#'
+#' @return A list with elements `vars`, `dims` and `global_attributes`.
+#'
+#' @examples
+#' \dontrun{
+#' wind <- s1ocn_extrat_wind_data("path/to/product.zip")
+#' }
+#'
 #' @export
 s1ocn_extrat_wind_data <- function(filepath){
 
@@ -35,6 +55,31 @@ names(wind_data$global_attributes) <-  ((1:file_info$ngatts) -1) %>% purrr::map(
 }
 
 
+#' Extract wind data from multiple files
+#'
+#' Applies [s1ocn_extrat_wind_data()] to each product listed in a table of
+#' downloaded files.
+#'
+#' @param files A data frame containing at least the columns
+#'   `downloaded_file_path` and `Name`.
+#' @param workers Number of parallel workers to use.
+#'
+#' @details
+#' The function processes the products in parallel with
+#' `furrr::future_map()`. The resulting list is named using the product
+#' names provided in `files`.
+#'
+#' @return A named list of wind data objects.
+#'
+#' @examples
+#' \dontrun{
+#' files <- data.frame(
+#'   downloaded_file_path = "path/to/product.zip",
+#'   Name = "Product1"
+#' )
+#' wind_list <- s1ocn_extrat_wind_data_from_files(files)
+#' }
+#'
 #' @export
 s1ocn_extrat_wind_data_from_files <- function(files, workers = 1){
 
@@ -50,6 +95,25 @@ return(out)
 }
 
 
+#' Build a wind data table
+#'
+#' Convert a wind data list into a structured data frame with metadata.
+#'
+#' @param wind_data A list returned by [s1ocn_extrat_wind_data()].
+#'
+#' @details
+#' Selected wind variables are flattened into columns and combined with the
+#' first and last measurement timestamps. Remaining variables, dimensions and
+#' attributes are stored in the resulting object's attributes.
+#'
+#' @return An object of class `S1OCN_wind_data_table`.
+#'
+#' @examples
+#' \dontrun{
+#' wind <- s1ocn_extrat_wind_data("path/to/product.zip")
+#' tbl <- s1ocn_new_S1OCN_wind_data_table(wind)
+#' }
+#'
 #' @export
 s1ocn_new_S1OCN_wind_data_table <- function(wind_data){
 
@@ -75,6 +139,29 @@ class(out) <- c("S1OCN_wind_data_table", class(out))
 
 
 
+#' Convert a list of wind data into tables
+#'
+#' Transform each element of a wind data list into a
+#' [`S1OCN_wind_data_table`][s1ocn_new_S1OCN_wind_data_table].
+#'
+#' @param wind_data_list A list of wind data objects from
+#'   [s1ocn_extrat_wind_data()].
+#' @param workers Number of parallel workers to use.
+#'
+#' @details
+#' The conversion is executed in parallel using `furrr::future_map()`.
+#'
+#' @return A list of `S1OCN_wind_data_table` objects.
+#'
+#' @examples
+#' \dontrun{
+#' wind <- list(
+#'   a = s1ocn_extrat_wind_data("path/to/a.zip"),
+#'   b = s1ocn_extrat_wind_data("path/to/b.zip")
+#' )
+#' tbls <- s1ocn_wind_data_list_to_tables(wind, workers = 2)
+#' }
+#'
 #' @export
 s1ocn_wind_data_list_to_tables <- function(wind_data_list, workers = 1){
 
