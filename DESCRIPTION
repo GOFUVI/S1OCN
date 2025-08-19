@@ -1,6 +1,6 @@
 Package: S1OCN
 Title: Sentinel-1 OCN Products
-Version: 0.0.1
+Version: 0.1.0
 Authors@R: 
     person("Juan Luis", "Herrera Cortijo", , "first.last@example.com", role = c("aut", "cre"),
            comment = c(ORCID = "https://orcid.org/0000-0002-4206-2459"))
